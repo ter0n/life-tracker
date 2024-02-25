@@ -1,6 +1,7 @@
 <template>
   <div>
     <h2>Pack here!</h2>
+    <q-btn @click="touchBackend">Test</q-btn>
     <svg width="960" height="960"></svg>
   </div>
 </template>
@@ -8,13 +9,24 @@
 <script>
 import * as d3 from 'd3'
 import jsonData from '../assets/json/flare.json'
-
+import {api} from "boot/axios";
 
 export default {
   name: "PackChart",
   components: {},
   data() {
     return {}
+  },
+  methods: {
+    touchBackend() {
+      api.get("/work-skills/get-all").then(response => {
+        console.log("response: ", response);
+        if (response.status === 200) {
+          const data = response.data;
+          console.log("data: ", data);
+        }
+      });
+    }
   },
   mounted() {
 
