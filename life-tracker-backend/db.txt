@@ -1,0 +1,25 @@
+create table if not exists work_skills
+(
+    id        uuid default gen_random_uuid() not null
+        constraint work_skills_pk
+            primary key,
+    parent_id uuid,
+    comment   text,
+    name      text default 'Название'::text  not null
+);
+
+comment on table work_skills is 'Знания, необходимые для работы.';
+
+comment on column work_skills.id is 'Идентификатор';
+
+comment on constraint work_skills_pk on work_skills is 'Идентификатор и первичный ключ';
+
+comment on column work_skills.parent_id is 'ссылка на родительский элемент';
+
+comment on column work_skills.comment is 'Комментарий к объекту';
+
+comment on column work_skills.name is 'Название, которое будет отображатья на интерфейсе';
+
+alter table work_skills
+    owner to postgres;
+
