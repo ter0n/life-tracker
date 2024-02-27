@@ -10,7 +10,6 @@ import java.util.List;
 
 @RestController
 @Data
-@CrossOrigin
 @RequestMapping(value = "/work-skills")
 public class WorkSkillController {
 
