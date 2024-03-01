@@ -1,6 +1,6 @@
 package com.teron.lifetrackerbackend.controllers;
 
-import com.teron.lifetrackerbackend.models.WorkSkill;
+import com.teron.lifetrackerbackend.entities.WorkSkillEntity;
 import com.teron.lifetrackerbackend.services.WorkSkillService;
 import lombok.Data;
 import org.springframework.http.HttpStatus;
@@ -17,9 +17,9 @@ public class WorkSkillController {
 
     @GetMapping(value = "/get-all")
     @ResponseStatus(value = HttpStatus.OK)
-    public List<WorkSkill> getAllData() {
-        List<WorkSkill> workSkills = workSkillService.getAllWorkSkills();
-        return workSkills;
+    public List<WorkSkillEntity> getAllData() {
+        List<WorkSkillEntity> workSkillEntities = workSkillService.getOnlyMainSkills();
+        return workSkillEntities;
     }
 
 }
