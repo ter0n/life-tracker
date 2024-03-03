@@ -23,14 +23,14 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-//                .csrf(AbstractHttpConfigurer::disable)
+                .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorizationManagerRequestMatcherRegistry ->
                         authorizationManagerRequestMatcherRegistry
 //                                .requestMatchers(HttpMethod.DELETE).hasRole("ADMIN")
 //                                .requestMatchers("/admin/**").hasAnyRole("ADMIN")
 //                                .requestMatchers("/user/**").hasAnyRole("USER", "ADMIN")
-                                .requestMatchers("/", "/**").permitAll()
-                                .anyRequest().authenticated());
+//                                .requestMatchers("/", "/**").permitAll()
+                                .anyRequest().permitAll());
 //                .cors(AbstractHttpConfigurer::disable);
 
 //                .httpBasic(Customizer.withDefaults())

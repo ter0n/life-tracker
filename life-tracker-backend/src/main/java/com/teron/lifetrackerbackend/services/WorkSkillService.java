@@ -20,4 +20,8 @@ public class WorkSkillService {
     public List<WorkSkillEntity> getOnlyMainSkills() {
         return workSkillsCrudRepository.findAllByParentId(null);
     }
+
+    public void createNewSkill(WorkSkillEntity entity) {
+        workSkillsCrudRepository.save(entity);
+    }
 }

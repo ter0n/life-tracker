@@ -18,8 +18,16 @@ public class WorkSkillController {
     @GetMapping(value = "/get-all")
     @ResponseStatus(value = HttpStatus.OK)
     public List<WorkSkillEntity> getAllData() {
-        List<WorkSkillEntity> workSkillEntities = workSkillService.getOnlyMainSkills();
+        List<WorkSkillEntity> workSkillEntities = workSkillService.getAllWorkSkills();
         return workSkillEntities;
+    }
+
+    @PostMapping("/create-skill")
+    @ResponseStatus(HttpStatus.OK)
+    public List<WorkSkillEntity> createNewWorkSkill(@RequestBody WorkSkillEntity entity) {
+        System.out.println("Test! " + entity);
+        workSkillService.createNewSkill(entity);
+        return workSkillService.getAllWorkSkills();
     }
 
 }
