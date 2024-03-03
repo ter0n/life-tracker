@@ -7,7 +7,7 @@ const routes = [
       { path: '', component: () => import('pages/IndexPage.vue') },
       { path: '/test', component: () => import('pages/TestTree.vue')},
       { path: '/official-tree', component: () => import('pages/OfficialTree.vue')},
-      { path: '/pack-from-inet', component: () => import('pages/PackFromInet.vue')}
+      { path: '/pack-from-inet', component: () => import('pages/WorkSkills.vue')}
     ]
   },
 

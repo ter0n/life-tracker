@@ -25,9 +25,14 @@ import {api} from "boot/axios";
 import PackChart from "components/work-skills/PackChart.vue";
 import AddSkillDialog from "components/work-skills/AddSkillDialog.vue";
 import {useWorkSkillStore} from "src/stores/WorkSkill"
+import {onMounted} from "vue";
 
 
 const workSkillStore = useWorkSkillStore();
+
+onMounted(() => {
+  workSkillStore.loadAllWorkSkills();
+});
 
 function touchBackend() {
   api.get("/work-skills/get-all").then(response => {
