@@ -24,4 +24,8 @@ public class WorkSkillService {
     public void createNewSkill(WorkSkillEntity entity) {
         workSkillsCrudRepository.save(entity);
     }
+
+    public void deleteSkill(WorkSkillEntity entity) {
+        workSkillsCrudRepository.delete(entity);
+    }
 }

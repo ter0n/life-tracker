@@ -30,4 +30,12 @@ public class WorkSkillController {
         return workSkillService.getAllWorkSkills();
     }
 
+    @DeleteMapping("/delete-skill")
+    @ResponseStatus(HttpStatus.OK)
+    public List<WorkSkillEntity> deleteWorkSkill(@RequestBody WorkSkillEntity entity) {
+        System.out.println("Delete test! " + entity);
+        workSkillService.deleteSkill(entity);
+        return workSkillService.getAllWorkSkills();
+    }
+
 }
