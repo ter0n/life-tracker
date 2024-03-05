@@ -5,6 +5,7 @@ import {api} from "boot/axios";
 export const useWorkSkillStore = defineStore("workSkill", {
   state: () => ({
     showAddSkillDialog: false,
+    showDeleteSkillDialog: false,
     workSkills: null
   }),
   getters: {},
@@ -23,6 +24,18 @@ export const useWorkSkillStore = defineStore("workSkill", {
       api.post("/work-skills/create-skill", newSkill).then(response => {
         if (response.status === 200) {
           console.log("New skill was created!!!");
+          this.workSkills = response.data;
+        }
+      })
+    },
+
+    deleteSkill(skill) {
+      api.delete("/work-skills/delete-skill", {
+        headers: { },
+        data: skill
+      }).then(response => {
+        if (response.status === 200) {
+          console.log("Skill was deleted!!!");
           this.workSkills = response.data;
         }
       })

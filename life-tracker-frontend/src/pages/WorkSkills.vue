@@ -8,8 +8,13 @@
       </q-btn>
 
       <q-btn style="margin-left: 1rem"
-             @click="showDialog">
+             @click="showAddDialog">
         Добавить элемент
+      </q-btn>
+
+      <q-btn style="margin-left: 1rem"
+             @click="showDeleteDialog">
+        Удалить элемент
       </q-btn>
     </div>
     <div class="row">
@@ -17,6 +22,7 @@
     </div>
   </div>
   <AddSkillDialog/>
+  <DeleteSkillDialog/>
 </template>
 
 <script setup>
@@ -26,6 +32,7 @@ import PackChart from "components/work-skills/PackChart.vue";
 import AddSkillDialog from "components/work-skills/AddSkillDialog.vue";
 import {useWorkSkillStore} from "src/stores/WorkSkill"
 import {onMounted} from "vue";
+import DeleteSkillDialog from "components/work-skills/DeleteSkillDialog.vue";
 
 
 const workSkillStore = useWorkSkillStore();
@@ -44,8 +51,12 @@ function touchBackend() {
   });
 }
 
-function showDialog() {
+function showAddDialog() {
   workSkillStore.showAddSkillDialog = !workSkillStore.showAddSkillDialog;
+}
+
+function showDeleteDialog() {
+  workSkillStore.showDeleteSkillDialog = !workSkillStore.showDeleteSkillDialog;
 }
 
 // export default {
