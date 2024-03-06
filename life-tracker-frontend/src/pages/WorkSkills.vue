@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h2>Pack here!</h2>
     <div class="row" style="margin-bottom: 2rem">
 
       <q-btn @click="touchBackend">
