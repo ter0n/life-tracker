@@ -10,6 +10,11 @@ const routes = [
       { path: '/pack-from-inet', component: () => import('pages/WorkSkills.vue')}
     ]
   },
+  {
+    path: '/login',
+    name: 'Login',
+    component: () => import('pages/LoginPage.vue')
+  },
 
   // Always leave this as last one,
   // but you can also remove it
