@@ -1,11 +1,12 @@
 create table if not exists work_skills
 (
-    id        uuid default gen_random_uuid() not null
+    id        uuid    default gen_random_uuid() not null
         constraint work_skills_pk
             primary key,
     parent_id uuid,
     comment   text,
-    name      text default 'Название'::text  not null
+    name      text    default 'Название'::text  not null,
+    value     integer default 0                 not null
 );
 
 comment on table work_skills is 'Знания, необходимые для работы.';
@@ -20,6 +21,51 @@ comment on column work_skills.comment is 'Комментарий к объект
 
 comment on column work_skills.name is 'Название, которое будет отображатья на интерфейсе';
 
+comment on column work_skills.value is 'Значение навыка. Чем больше значение --- тем больше фигура на диаграмме.';
+
 alter table work_skills
+    owner to postgres;
+
+create table if not exists users
+(
+    username text                           not null,
+    password text                           not null,
+    role     text default 'USER'::text,
+    id       uuid default gen_random_uuid() not null
+        constraint users_pk
+            primary key
+);
+
+comment on table users is 'Таблица пользователей';
+
+comment on column users.username is 'Имя пользователя (логин)';
+
+comment on column users.password is 'Пароль в зашифрованном виде';
+
+comment on column users.role is 'Роль пользователя (ADMIN/USER)';
+
+comment on column users.id is 'Идентификатор';
+
+alter table users
+    owner to postgres;
+
+create table if not exists users_data_links
+(
+    id             uuid default gen_random_uuid() not null
+        constraint users_data_links_pk
+            primary key,
+    user_id        uuid                           not null,
+    work_skills_id uuid
+);
+
+comment on table users_data_links is 'Связь пользователя с другими таблицами (для персонализации данных)';
+
+comment on column users_data_links.id is 'Идентификатор';
+
+comment on column users_data_links.user_id is 'Идентификатор пользователя';
+
+comment on column users_data_links.work_skills_id is 'Идентификатор главного элемента в work_skills (корень дерева)';
+
+alter table users_data_links
     owner to postgres;
 
