@@ -29,7 +29,7 @@ const user = ref({
 });
 
 function tryLogin() {
-  api.post(`/auth/sign-in`, user.value)
+  api.post(`/auth/sign-up`, user.value)
     .then(response => {
       console.log("Log in!!!!!")
       if (response.status === 200) {
