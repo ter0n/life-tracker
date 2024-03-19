@@ -22,6 +22,9 @@
 
 import {ref} from "vue";
 import {api} from "boot/axios";
+import {useRouter} from "vue-router";
+
+const router = useRouter();
 
 const user = ref({
   username: "",
@@ -34,6 +37,8 @@ function tryLogin() {
       console.log("Log in!!!!!")
       if (response.status === 200) {
         console.log("Data: ", response.data);
+        localStorage.setItem("jwt", response.data);
+        router.push('/');
       }
     });
 }

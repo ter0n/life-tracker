@@ -27,5 +27,14 @@ export default route(function (/* { stores, ssrContext } */) {
     history: createWebHistory()
   })
 
+  Router.beforeEach((to, from) => {
+    const isAuthenticated = localStorage.getItem("jwt");
+    if (to.meta.requiresAuth && !isAuthenticated) {
+      return {
+        name: 'Login'
+      }
+    }
+  })
+
   return Router
 })

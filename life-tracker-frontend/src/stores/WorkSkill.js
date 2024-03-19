@@ -11,7 +11,7 @@ export const useWorkSkillStore = defineStore("workSkill", {
   getters: {},
   actions: {
     loadAllWorkSkills() {
-      api.get("/work-skills/get-all").then(response => {
+      api.get("/work-skills/get-all", {headers: { 'Authorization': 'Bearer ' + localStorage.getItem("jwt") }}).then(response => {
         console.log("response: ", response);
         if (response.status === 200) {
           this.workSkills = response.data;

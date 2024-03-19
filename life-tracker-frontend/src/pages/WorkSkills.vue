@@ -38,6 +38,7 @@ const workSkillStore = useWorkSkillStore();
 
 onMounted(() => {
   workSkillStore.loadAllWorkSkills();
+  console.log("localstorage.jwt: ", localStorage.getItem("jwt"));
 });
 
 function touchBackend() {
