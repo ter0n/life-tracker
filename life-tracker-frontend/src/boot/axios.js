@@ -16,3 +16,9 @@ export default boot(({ app }) => {
 })
 
 export { axios, api }
+
+if (localStorage.getItem('jwt')) {
+  api.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('jwt')}`;
+} else {
+  delete api.defaults.headers.common['Authorization'];
+}
