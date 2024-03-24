@@ -14,9 +14,19 @@ const routes = [
     ]
   },
   {
-    path: '/login',
-    name: 'Login',
-    component: () => import('pages/LoginPage.vue')
+    path: '/auth',
+    children: [
+      {
+        path: 'sign-in',
+        name: 'SignIn',
+        component: () => import('pages/Authentication/SignIn.vue')
+      },
+      {
+        path: 'sign-up',
+        name: 'SignUp',
+        component: () => import('pages/Authentication/SignUp.vue')
+      },
+    ],
   },
 
   // Always leave this as last one,

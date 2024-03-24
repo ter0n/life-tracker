@@ -15,7 +15,7 @@
           Quasar App
         </q-toolbar-title>
 
-        <div>Quasar v{{ $q.version }}</div>
+        <q-btn label="Выход" icon="logout" @click="logout" flat/>
       </q-toolbar>
     </q-header>
 
@@ -46,8 +46,9 @@
 </template>
 
 <script>
-import { defineComponent, ref } from 'vue'
-import EssentialLink from 'components/EssentialLink.vue'
+import { defineComponent, ref } from 'vue';
+import EssentialLink from 'components/EssentialLink.vue';
+import router from "src/router";
 
 const linksList = [
   {
@@ -74,7 +75,7 @@ const linksList = [
     icon: 'favorite',
     link: '/pack-from-inet'
   }
-]
+];
 
 export default defineComponent({
   name: 'MainLayout',
@@ -92,6 +93,15 @@ export default defineComponent({
       toggleLeftDrawer () {
         leftDrawerOpen.value = !leftDrawerOpen.value
       }
+    }
+  },
+
+  methods: {
+    logout() {
+      // удаление токена из локального хранилища
+      delete localStorage['jwt'];
+      // перенаправляем на начальную страницу авторизации
+      this.$router.push('/auth/sign-in');
     }
   }
 })

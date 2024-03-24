@@ -31,7 +31,7 @@ export default route(function (/* { stores, ssrContext } */) {
     const isAuthenticated = localStorage.getItem("jwt");
     if (to.meta.requiresAuth && !isAuthenticated) {
       return {
-        name: 'Login'
+        name: 'SignIn'
       }
     }
   })
