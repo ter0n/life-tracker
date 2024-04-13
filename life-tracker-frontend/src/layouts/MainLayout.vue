@@ -100,6 +100,8 @@ export default defineComponent({
     logout() {
       // удаление токена из локального хранилища
       delete localStorage['jwt'];
+      // удаление заголовка
+      delete api.defaults.headers.common['Authorization'];
       // перенаправляем на начальную страницу авторизации
       this.$router.push('/auth/sign-in');
     }

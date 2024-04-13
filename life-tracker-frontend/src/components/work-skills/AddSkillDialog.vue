@@ -1,6 +1,6 @@
 <template>
   <q-dialog v-model="workSkillStore.showAddSkillDialog">
-    <q-card style="width: 300px" class="q-pa-md">
+    <q-card style="width: 25rem" class="q-pa-md">
       <q-card-section>
         <div class="text-h6">Добавление нового элемента</div>
 

@@ -6,6 +6,18 @@ const api = axios.create({ baseURL: 'http://localhost:8080' })
 export default boot(({ app }) => {
   // for use inside Vue files (Options API) through this.$axios and this.$api
 
+  api.interceptors.response.use(async req => {
+    return req
+  }, error => {
+    if (error.response.status === 403) {
+      if (!!localStorage['jwt']) {
+        delete localStorage['jwt'];
+        delete api.defaults.headers.common['Authorization'];
+        app.config.globalProperties.$router.push('/auth/sign-in');
+      }
+      return Promise.reject(error);
+    }
+  })
   app.config.globalProperties.$axios = axios
   // ^ ^ ^ this will allow you to use this.$axios (for Vue Options API form)
   //       so you won't necessarily have to import axios in each vue file
