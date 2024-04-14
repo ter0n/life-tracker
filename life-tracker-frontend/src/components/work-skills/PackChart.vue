@@ -11,23 +11,20 @@ import {useWorkSkillStore} from "stores/WorkSkill";
 
 const workSkillStore = useWorkSkillStore();
 
-const data2 = computed(() => workSkillStore.workSkills);
+const chartData = computed(() => workSkillStore.workSkills);
 
-watchEffect(() => createPackChart(data2.value?.find(el => el.name === "main node")));
+watchEffect(() => {
+  if (!!chartData.value) {
+    createPackChart(chartData.value?.find(el => el.name === "main node"));
+  }
+});
 
-async function createPackChart(data3) {
-  let data = null;
+async function createPackChart(data) {
 
-  await api.get("/work-skills/get-all").then(response => {
-    if (response.status === 200) {
-      data = response.data.find(el => el.name === "main node");
-    }
-  });
-
-  let svg = d3.select("svg"),
-    margin = 20,
-    diameter = +svg.attr("width"),
-    g = svg
+  let svg = d3.select("svg");
+  let margin = 20;
+  let diameter = +svg.attr("width");
+  let g = svg
       .append("g")
       .attr("transform", "translate(" + diameter / 2 + "," + diameter / 2 + ")");
 
@@ -43,7 +40,7 @@ async function createPackChart(data3) {
     .padding(2);
 
   // let root = jsonData;
-  let root = data3;
+  let root = data;
 
   root = d3
     .hierarchy(root)
@@ -75,7 +72,12 @@ async function createPackChart(data3) {
     })
     .on("click", function (event) {
       let element = event.srcElement.__data__;
-      if (focus !== element) zoom(element, event), event.stopPropagation();
+      if (focus !== element) {
+        zoom(element, event);
+        workSkillStore.skillComment = element.data.comment;
+        event.stopPropagation();
+      }
+      // if (focus !== element) zoom(element, event), event.stopPropagation();
     });
 
 

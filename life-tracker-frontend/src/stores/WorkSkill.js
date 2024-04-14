@@ -6,7 +6,8 @@ export const useWorkSkillStore = defineStore("workSkill", {
   state: () => ({
     showAddSkillDialog: false,
     showDeleteSkillDialog: false,
-    workSkills: null
+    workSkills: null,
+    skillComment: null
   }),
   getters: {},
   actions: {

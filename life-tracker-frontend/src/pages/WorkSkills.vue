@@ -38,15 +38,12 @@ const workSkillStore = useWorkSkillStore();
 
 onMounted(() => {
   workSkillStore.loadAllWorkSkills();
-  console.log("localstorage.jwt: ", localStorage.getItem("jwt"));
 });
 
 function touchBackend() {
   api.get("/work-skills/get-all").then(response => {
-    console.log("response: ", response);
     if (response.status === 200) {
       const data = response.data;
-      console.log("data: ", data);
     }
   });
 }

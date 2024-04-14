@@ -70,8 +70,8 @@ const linksList = [
     link: '/official-tree'
   },
   {
-    title: 'Example Pack',
-    caption: 'Test Pack',
+    title: 'Рабочие навыки',
+    caption: 'Навыки, необходимые для работы',
     icon: 'favorite',
     link: '/pack-from-inet'
   }
