@@ -7,10 +7,10 @@ const routes = [
       requiresAuth: true
     },
     children: [
-      { path: '', component: () => import('pages/IndexPage.vue') },
-      { path: '/test', component: () => import('pages/TestTree.vue')},
-      { path: '/official-tree', component: () => import('pages/OfficialTree.vue')},
-      { path: '/pack-from-inet', component: () => import('pages/WorkSkills.vue')}
+      // { path: '', component: () => import('pages/IndexPage.vue') },
+      // { path: '/test', component: () => import('pages/TestTree.vue')},
+      // { path: '/official-tree', component: () => import('pages/OfficialTree.vue')},
+      { path: '', component: () => import('pages/WorkSkills.vue')}
     ]
   },
   {

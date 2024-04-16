@@ -7,7 +7,8 @@ export const useWorkSkillStore = defineStore("workSkill", {
     showAddSkillDialog: false,
     showDeleteSkillDialog: false,
     workSkills: null,
-    skillComment: null
+    skillComment: null,
+    skillsIsReady: false
   }),
   getters: {},
   actions: {
@@ -16,7 +17,7 @@ export const useWorkSkillStore = defineStore("workSkill", {
         console.log("response: ", response);
         if (response.status === 200) {
           this.workSkills = response.data;
-          console.log("data: ", this.workSkills);
+          this.skillsIsReady = true;
         }
       });
     },
@@ -24,7 +25,6 @@ export const useWorkSkillStore = defineStore("workSkill", {
     createNewWorkSkill(newSkill) {
       api.post("/work-skills/create-skill", newSkill).then(response => {
         if (response.status === 200) {
-          console.log("New skill was created!!!");
           this.workSkills = response.data;
         }
       })
@@ -40,6 +40,14 @@ export const useWorkSkillStore = defineStore("workSkill", {
           this.workSkills = response.data;
         }
       })
+    },
+
+    clearStore() {
+      this.showAddSkillDialog = false;
+      this.showDeleteSkillDialog = false;
+      this.workSkills = null;
+      this.skillComment = null;
+      this.skillsIsReady = false;
     }
   }
 })

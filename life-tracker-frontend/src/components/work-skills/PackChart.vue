@@ -14,7 +14,7 @@ const workSkillStore = useWorkSkillStore();
 const chartData = computed(() => workSkillStore.workSkills);
 
 watchEffect(() => {
-  if (!!chartData.value) {
+  if (!!chartData.value && workSkillStore.skillsIsReady) {
     createPackChart(chartData.value?.find(el => el.name === "main node"));
   }
 });

@@ -48,32 +48,34 @@
 <script>
 import { defineComponent, ref } from 'vue';
 import EssentialLink from 'components/EssentialLink.vue';
+import {api} from "boot/axios";
 import router from "src/router";
+import {useWorkSkillStore} from "stores/WorkSkill";
 
 const linksList = [
-  {
-    title: 'Main',
-    caption: 'Go to main page',
-    icon: 'school',
-    link: '/'
-  },
-  {
-    title: 'Go Test Tree',
-    caption: 'Try D3 Tree',
-    icon: 'favorite',
-    link: '/test'
-  },
-  {
-    title: 'Go Official Tree',
-    caption: 'Official D3 Tree',
-    icon: 'favorite',
-    link: '/official-tree'
-  },
+  // {
+  //   title: 'Main',
+  //   caption: 'Go to main page',
+  //   icon: 'school',
+  //   link: '/'
+  // },
+  // {
+  //   title: 'Go Test Tree',
+  //   caption: 'Try D3 Tree',
+  //   icon: 'favorite',
+  //   link: '/test'
+  // },
+  // {
+  //   title: 'Go Official Tree',
+  //   caption: 'Official D3 Tree',
+  //   icon: 'favorite',
+  //   link: '/official-tree'
+  // },
   {
     title: 'Рабочие навыки',
     caption: 'Навыки, необходимые для работы',
-    icon: 'favorite',
-    link: '/pack-from-inet'
+    icon: 'school',
+    link: '/'
   }
 ];
 
@@ -94,6 +96,10 @@ export default defineComponent({
         leftDrawerOpen.value = !leftDrawerOpen.value
       }
     }
+  },
+
+  unmounted() {
+    useWorkSkillStore().clearStore();
   },
 
   methods: {

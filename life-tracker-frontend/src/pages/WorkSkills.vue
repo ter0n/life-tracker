@@ -1,21 +1,22 @@
 <template>
   <div>
-    <div class="row" style="margin-bottom: 2rem">
+    <q-card class="q-ma-md">
+      <q-card-section class="row" style="margin-bottom: 2rem">
+        <q-btn @click="touchBackend">
+          Test
+        </q-btn>
 
-      <q-btn @click="touchBackend">
-        Test
-      </q-btn>
+        <q-btn style="margin-left: 1rem"
+               @click="showAddDialog">
+          Добавить элемент
+        </q-btn>
 
-      <q-btn style="margin-left: 1rem"
-             @click="showAddDialog">
-        Добавить элемент
-      </q-btn>
-
-      <q-btn style="margin-left: 1rem"
-             @click="showDeleteDialog">
-        Удалить элемент
-      </q-btn>
-    </div>
+        <q-btn style="margin-left: 1rem"
+               @click="showDeleteDialog">
+          Удалить элемент
+        </q-btn>
+      </q-card-section>
+    </q-card>
     <div class="row">
       <PackChart/>
     </div>
