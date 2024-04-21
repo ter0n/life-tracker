@@ -1,4 +1,4 @@
-create table if not exists work_skills
+create table work_skills
 (
     id        uuid    default gen_random_uuid() not null
         constraint work_skills_pk
@@ -26,9 +26,11 @@ comment on column work_skills.value is 'Значение навыка. Чем б
 alter table work_skills
     owner to postgres;
 
-create table if not exists users
+create table users
 (
-    username text                           not null,
+    username text                           not null
+        constraint users_uniq_field
+            unique,
     password text                           not null,
     role     text default 'USER'::text,
     id       uuid default gen_random_uuid() not null
@@ -49,12 +51,12 @@ comment on column users.id is 'Идентификатор';
 alter table users
     owner to postgres;
 
-create table if not exists users_data_links
+create table users_data_links
 (
     id             uuid default gen_random_uuid() not null
         constraint users_data_links_pk
             primary key,
-    user_id        uuid                           not null,
+    username       text                           not null,
     work_skills_id uuid
 );
 
@@ -62,7 +64,7 @@ comment on table users_data_links is 'Связь пользователя с д�
 
 comment on column users_data_links.id is 'Идентификатор';
 
-comment on column users_data_links.user_id is 'Идентификатор пользователя';
+comment on column users_data_links.username is 'Имя пользователя';
 
 comment on column users_data_links.work_skills_id is 'Идентификатор главного элемента в work_skills (корень дерева)';
 

@@ -8,11 +8,15 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 @AllArgsConstructor
 public class UserService {
 
     private final UsersCrudRepository usersCrudRepository;
+    private final UsersDataLinksService usersDataLinksService;
+    private final WorkSkillService workSkillService;
 
     /**
      * Сохранение пользователя
@@ -33,6 +37,7 @@ public class UserService {
         if (usersCrudRepository.existsByUsername(user.getUsername())) {
             throw new IllegalArgumentException("Пользователь с таким именем уже существует!");
         }
+        createUserData(user.getUsername());
         return saveUser(user);
     }
 
@@ -60,6 +65,11 @@ public class UserService {
     public User getCurrentUser() {
         var username = SecurityContextHolder.getContext().getAuthentication().getName();
         return getUserByUsername(username);
+    }
+
+    private void createUserData(String username) {
+        UUID workSkillId = workSkillService.createUserMainSkill(username);
+        usersDataLinksService.createNewLink(username, workSkillId);
     }
 
 }

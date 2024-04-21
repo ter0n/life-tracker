@@ -22,6 +22,11 @@ public class WorkSkillController {
         return workSkillEntities;
     }
 
+    @GetMapping(value = "/get-user-work-skills")
+    public WorkSkillEntity getUserWorkSkills() {
+        return workSkillService.getUserWorkSkills();
+    }
+
     @PostMapping("/create-skill")
     @ResponseStatus(HttpStatus.OK)
     public List<WorkSkillEntity> createNewWorkSkill(@RequestBody WorkSkillEntity entity) {

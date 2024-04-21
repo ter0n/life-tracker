@@ -22,12 +22,6 @@ public class AuthenticationService {
      */
     public String signUp(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-//        var newUser = User.builder()
-//                .username(request.getUsername())
-//                .email(request.getEmail())
-//                .password(passwordEncoder.encode(request.getPassword()))
-//                .role(Role.ROLE_USER)
-//                .build();
         userService.createUser(user);
         var jwt = jwtService.generateToken(user);
         return jwt;
