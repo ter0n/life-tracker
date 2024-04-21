@@ -27,10 +27,15 @@ export default boot(({ app }) => {
   //       so you can easily perform requests against your app's API
 })
 
-export { axios, api }
-
 if (localStorage.getItem('jwt')) {
-  api.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('jwt')}`;
+  if (!api.defaults.headers.common['Authorization']) {
+    api.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('jwt')}`;
+  }
 } else {
-  delete api.defaults.headers.common['Authorization'];
+  if (api.defaults.headers.common['Authorization']) {
+    delete api.defaults.headers.common['Authorization'];
+  }
 }
+
+
+export { axios, api }

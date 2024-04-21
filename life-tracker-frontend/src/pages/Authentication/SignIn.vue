@@ -59,6 +59,7 @@ function tryLogin() {
     .then(response => {
       if (response.status === 200) {
         localStorage.setItem("jwt", response.data);
+        api.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('jwt')}`;
         router.push('/');
       }
     });

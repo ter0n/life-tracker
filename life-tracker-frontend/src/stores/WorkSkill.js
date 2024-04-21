@@ -13,11 +13,18 @@ export const useWorkSkillStore = defineStore("workSkill", {
   getters: {},
   actions: {
     loadAllWorkSkills() {
-      api.get("/work-skills/get-all", {headers: { 'Authorization': 'Bearer ' + localStorage.getItem("jwt") }}).then(response => {
+      api.get("/work-skills/get-all").then(response => {
         console.log("response: ", response);
         if (response.status === 200) {
           this.workSkills = response.data;
           this.skillsIsReady = true;
+        }
+      });
+      api.get("/work-skills/get-user-work-skills").then(response => {
+        console.log("get-user-work-skills response: ", response);
+        if (response.status === 200) {
+          // this.workSkills = response.data;
+          // this.skillsIsReady = true;
         }
       });
     },
