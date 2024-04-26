@@ -6,9 +6,7 @@ import lombok.Data;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 @Data
@@ -26,6 +24,30 @@ public class WorkSkillService {
         UUID workSkillsId = usersDataLinksService.getWorkSkillsId(userName);
         Optional<WorkSkillEntity> optionalWorkSkill = workSkillsCrudRepository.findById(workSkillsId);
         return optionalWorkSkill.orElseThrow();
+    }
+
+    public List<WorkSkillEntity> getUserWorkSkillsList() {
+        String userName = SecurityContextHolder.getContext().getAuthentication().getName();
+        UUID workSkillsId = usersDataLinksService.getWorkSkillsId(userName);
+        Optional<WorkSkillEntity> optionalWorkSkill = workSkillsCrudRepository.findById(workSkillsId);
+        return takeAllTreeElementsToList(optionalWorkSkill.orElseThrow());
+    }
+
+    private List<WorkSkillEntity> takeAllTreeElementsToList(WorkSkillEntity mainEntity) {
+        if(mainEntity== null) {
+            return Collections.emptyList();
+        }
+        List<WorkSkillEntity> entityList = new ArrayList<>();
+        entityList.add(mainEntity);
+        int entityListSize = 1;
+        for (int i = 0; i < entityListSize; i++) {
+            WorkSkillEntity entity = entityList.get(i);
+            if (!entity.getChildren().isEmpty()) {
+                entityList.addAll(entity.getChildren());
+                entityListSize = entityList.size();
+            }
+        }
+        return entityList;
     }
 
     public List<WorkSkillEntity> getOnlyMainSkills() {

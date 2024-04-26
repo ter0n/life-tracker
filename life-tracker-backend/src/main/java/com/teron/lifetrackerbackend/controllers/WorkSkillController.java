@@ -22,9 +22,14 @@ public class WorkSkillController {
         return workSkillEntities;
     }
 
+//    @GetMapping(value = "/get-user-work-skills")
+//    public WorkSkillEntity getUserWorkSkills() {
+//        return workSkillService.getUserWorkSkills();
+//    }
+
     @GetMapping(value = "/get-user-work-skills")
-    public WorkSkillEntity getUserWorkSkills() {
-        return workSkillService.getUserWorkSkills();
+    public List<WorkSkillEntity> getUserWorkSkills() {
+        return workSkillService.getUserWorkSkillsList();
     }
 
     @PostMapping("/create-skill")
