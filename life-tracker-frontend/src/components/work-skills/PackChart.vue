@@ -15,7 +15,7 @@ const chartData = computed(() => workSkillStore.workSkills);
 
 watchEffect(() => {
   if (!!chartData.value && workSkillStore.skillsIsReady) {
-    createPackChart(chartData.value?.find(el => el.name === "main node"));
+    createPackChart(chartData.value?.find(el => !el.parentId));
   }
 });
 
