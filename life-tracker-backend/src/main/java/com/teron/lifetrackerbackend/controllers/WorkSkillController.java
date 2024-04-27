@@ -35,15 +35,19 @@ public class WorkSkillController {
     @PostMapping("/create-skill")
     @ResponseStatus(HttpStatus.OK)
     public List<WorkSkillEntity> createNewWorkSkill(@RequestBody WorkSkillEntity entity) {
-        System.out.println("Test! " + entity);
         workSkillService.createNewSkill(entity);
         return workSkillService.getAllWorkSkills();
+    }
+
+    @PostMapping("/edit-skill")
+    @ResponseStatus(HttpStatus.OK)
+    public WorkSkillEntity editSkill(@RequestBody WorkSkillEntity entity) {
+        return workSkillService.editSkill(entity);
     }
 
     @DeleteMapping("/delete-skill")
     @ResponseStatus(HttpStatus.OK)
     public List<WorkSkillEntity> deleteWorkSkill(@RequestBody WorkSkillEntity entity) {
-        System.out.println("Delete test! " + entity);
         workSkillService.deleteSkill(entity);
         return workSkillService.getAllWorkSkills();
     }

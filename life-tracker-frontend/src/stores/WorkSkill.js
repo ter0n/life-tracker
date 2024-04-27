@@ -5,6 +5,7 @@ import {api} from "boot/axios";
 export const useWorkSkillStore = defineStore("workSkill", {
   state: () => ({
     showAddSkillDialog: false,
+    showChangeSkillDialog: false,
     showDeleteSkillDialog: false,
     workSkills: null,
     skillComment: null,
@@ -50,8 +51,6 @@ export const useWorkSkillStore = defineStore("workSkill", {
     },
 
     clearStore() {
-      this.showAddSkillDialog = false;
-      this.showDeleteSkillDialog = false;
       this.workSkills = null;
       this.skillComment = null;
       this.skillsIsReady = false;

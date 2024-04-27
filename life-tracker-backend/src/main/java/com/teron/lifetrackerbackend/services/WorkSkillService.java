@@ -58,6 +58,10 @@ public class WorkSkillService {
         workSkillsCrudRepository.save(entity);
     }
 
+    public WorkSkillEntity editSkill(WorkSkillEntity entity) {
+        return workSkillsCrudRepository.save(entity);
+    }
+
     /**
      * Создание корневой ноды пользователя
      * @param username имя пользователя

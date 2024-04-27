@@ -2,13 +2,15 @@
   <div>
     <q-card class="q-ma-md">
       <q-card-section class="row" style="margin-bottom: 2rem">
-        <q-btn @click="touchBackend">
-          Test
-        </q-btn>
 
         <q-btn style="margin-left: 1rem"
                @click="showAddDialog">
           Добавить элемент
+        </q-btn>
+
+        <q-btn style="margin-left: 1rem"
+               @click="showChangeDialog">
+          Изменить элемент
         </q-btn>
 
         <q-btn style="margin-left: 1rem"
@@ -22,6 +24,7 @@
     </div>
   </div>
   <AddSkillDialog/>
+  <ChangeSkillDialog/>
   <DeleteSkillDialog/>
 </template>
 
@@ -33,6 +36,7 @@ import AddSkillDialog from "components/work-skills/AddSkillDialog.vue";
 import {useWorkSkillStore} from "src/stores/WorkSkill"
 import {onMounted} from "vue";
 import DeleteSkillDialog from "components/work-skills/DeleteSkillDialog.vue";
+import ChangeSkillDialog from "components/work-skills/ChangeSkillDialog.vue";
 
 
 const workSkillStore = useWorkSkillStore();
@@ -41,20 +45,16 @@ onMounted(() => {
   workSkillStore.loadAllWorkSkills();
 });
 
-function touchBackend() {
-  api.get("/work-skills/get-all").then(response => {
-    if (response.status === 200) {
-      const data = response.data;
-    }
-  });
-}
-
 function showAddDialog() {
   workSkillStore.showAddSkillDialog = !workSkillStore.showAddSkillDialog;
 }
 
 function showDeleteDialog() {
   workSkillStore.showDeleteSkillDialog = !workSkillStore.showDeleteSkillDialog;
+}
+
+function showChangeDialog() {
+  workSkillStore.showChangeSkillDialog = !workSkillStore.showChangeSkillDialog;
 }
 
 // export default {
