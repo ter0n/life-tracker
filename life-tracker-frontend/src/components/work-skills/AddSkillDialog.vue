@@ -46,14 +46,20 @@ import {computed, onMounted, ref} from "vue";
 
 const workSkillStore = useWorkSkillStore();
 
-const newSkill = ref({
-  id: null,
-  name: "",
-  value: 0,
-  comment: "",
-  parentId: null,
-  // childrens: [],
-});
+const newSkill = ref();
+
+function initNewSkill() {
+  newSkill.value = {
+    id: null,
+    name: "",
+    value: 0,
+    comment: "",
+    parentId: null,
+    // childrens: [],
+  };
+}
+
+initNewSkill();
 
 const allWorkSkills = computed(() => workSkillStore.workSkills);
 

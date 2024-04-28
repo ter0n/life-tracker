@@ -72,10 +72,13 @@ async function createPackChart(data) {
     })
     .on("click", function (event) {
       let element = event.srcElement.__data__;
+      console.log("element: ", element.data);
       if (focus !== element) {
         zoom(element, event);
-        workSkillStore.skillComment = element.data.comment;
+        workSkillStore.skillForCommentEdit = element.data;
         event.stopPropagation();
+      } else {
+        console.log("element: ", element.data);
       }
       // if (focus !== element) zoom(element, event), event.stopPropagation();
     });
@@ -101,6 +104,11 @@ async function createPackChart(data) {
   svg.style("background", color(-1)).on("click", function (event) {
     zoom(root, event);
   });
+  // svg.on("click", function (event) {
+  //   // let element = event.srcElement.__data__;
+  //   console.log("element: ", event);
+  //   zoom(root, event);
+  // });
 
   zoomTo([root.x, root.y, root.r * 2 + margin]);
 

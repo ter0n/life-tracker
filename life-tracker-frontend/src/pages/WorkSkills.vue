@@ -20,7 +20,12 @@
       </q-card-section>
     </q-card>
     <div class="row">
+      <div class="col-6">
       <PackChart/>
+      </div>
+      <q-card class="q-ma-md col-12 col-md-5">
+        <SkillCommentEditor/>
+      </q-card>
     </div>
   </div>
   <AddSkillDialog/>
@@ -29,14 +34,13 @@
 </template>
 
 <script setup>
-import jsonData from '../assets/json/flare.json'
-import {api} from "boot/axios";
 import PackChart from "components/work-skills/PackChart.vue";
 import AddSkillDialog from "components/work-skills/AddSkillDialog.vue";
 import {useWorkSkillStore} from "src/stores/WorkSkill"
-import {onMounted} from "vue";
+import {computed, onMounted, ref} from "vue";
 import DeleteSkillDialog from "components/work-skills/DeleteSkillDialog.vue";
 import ChangeSkillDialog from "components/work-skills/ChangeSkillDialog.vue";
+import SkillCommentEditor from "components/work-skills/SkillCommentEditor.vue";
 
 
 const workSkillStore = useWorkSkillStore();
@@ -57,33 +61,6 @@ function showChangeDialog() {
   workSkillStore.showChangeSkillDialog = !workSkillStore.showChangeSkillDialog;
 }
 
-// export default {
-//   name: "PackChartTest",
-//   components: {AddSkillDialog, PackChart},
-//   data() {
-//     return {
-//       showAddSkillDialog: false
-//     }
-//   },
-//   methods: {
-//     touchBackend() {
-//       api.get("/work-skills/get-all").then(response => {
-//         console.log("response: ", response);
-//         if (response.status === 200) {
-//           const data = response.data;
-//           console.log("data: ", data);
-//         }
-//       });
-//     },
-//     showDialog() {
-//       this.showAddSkillDialog = !this.showAddSkillDialog;
-//     }
-//   },
-//   mounted() {
-//     console.log("Mounted!");
-//   }
-//
-// }
 
 
 </script>

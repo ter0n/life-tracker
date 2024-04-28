@@ -8,7 +8,7 @@ export const useWorkSkillStore = defineStore("workSkill", {
     showChangeSkillDialog: false,
     showDeleteSkillDialog: false,
     workSkills: null,
-    skillComment: null,
+    skillForCommentEdit: null,
     skillsIsReady: false
   }),
   getters: {},
@@ -34,6 +34,16 @@ export const useWorkSkillStore = defineStore("workSkill", {
       api.post("/work-skills/create-skill", newSkill).then(response => {
         if (response.status === 200) {
           this.workSkills = response.data;
+        }
+      })
+    },
+
+    updateWorkSkill(editSkill) {
+      api.post("/work-skills/edit-skill", editSkill).then(response => {
+        if (response.status === 200) {
+          if (!!response.data) {
+            this.workSkills = response.data;
+          }
         }
       })
     },

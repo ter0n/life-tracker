@@ -41,15 +41,17 @@ public class WorkSkillController {
 
     @PostMapping("/edit-skill")
     @ResponseStatus(HttpStatus.OK)
-    public WorkSkillEntity editSkill(@RequestBody WorkSkillEntity entity) {
-        return workSkillService.editSkill(entity);
+    public List<WorkSkillEntity> editSkill(@RequestBody WorkSkillEntity entity) {
+        WorkSkillEntity edited = workSkillService.editSkill(entity);
+        if (edited == null) return null;
+        return workSkillService.getUserWorkSkillsList();
     }
 
     @DeleteMapping("/delete-skill")
     @ResponseStatus(HttpStatus.OK)
     public List<WorkSkillEntity> deleteWorkSkill(@RequestBody WorkSkillEntity entity) {
         workSkillService.deleteSkill(entity);
-        return workSkillService.getAllWorkSkills();
+        return workSkillService.getUserWorkSkillsList();
     }
 
 }
