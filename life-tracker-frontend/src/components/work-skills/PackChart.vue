@@ -180,10 +180,11 @@ async function createPackChart(data) {
   text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff, 0 -1px 0 #fff;
 }
 
-.label,
-.node--root,
-.node--leaf {
-  pointer-events: none;
-}
+
 
 </style>
+<!--.label,-->
+<!--.node&#45;&#45;root,-->
+<!--.node&#45;&#45;leaf {-->
+<!--pointer-events: none;-->
+<!--}-->

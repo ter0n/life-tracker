@@ -2,8 +2,19 @@
   <q-editor
     v-model="editorText"
     :definitions="{
-        bold: {label: 'Bold', icon: null, tip: 'My bold tooltip'}
-      }"
+      save: {
+        tip: 'Сохранить изменения',
+        icon: 'save',
+        handler: saveComment
+      },
+      skillName: {label: getSkillName()}
+    }"
+    :toolbar="[
+        [ 'left', 'center', 'right', 'justify' ],
+        ['bold', 'italic', 'strike', 'underline'],
+        ['undo', 'redo'],
+        ['save', 'skillName']
+      ]"
   />
 </template>
 
@@ -28,6 +39,21 @@ watchEffect(() => {
     editorText.value = "";
   }
 });
+
+function getSkillName() {
+  if (!!skillForTextEditor.value && !!skillForTextEditor.value.name) {
+    return skillForTextEditor.value.name;
+  } else {
+    return "";
+  }
+}
+
+function saveComment() {
+  if (!!skillForTextEditor.value && !!skillForTextEditor.value.comment) {
+    skillForTextEditor.value.comment = editorText.value;
+    workSkillStore.updateWorkSkill(skillForTextEditor.value);
+  }
+}
 
 </script>
 
