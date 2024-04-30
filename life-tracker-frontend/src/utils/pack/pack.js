@@ -61,6 +61,8 @@ function packChildrenRandom(padding, k, random) {
         r = padding(node) * k || 0,
         e;
 
+      if (n === 1) r = (padding(node) + 20) * k || 0;
+
       if (r) for (i = 0; i < n; ++i) children[i].r += r;
       e = packSiblingsRandom(children, random);
       if (r) for (i = 0; i < n; ++i) children[i].r -= r;

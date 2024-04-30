@@ -8,6 +8,7 @@ import jsonData from 'assets/json/flare.json'
 import {api} from "boot/axios";
 import {computed, onMounted, watchEffect} from "vue";
 import {useWorkSkillStore} from "stores/WorkSkill";
+// import  * as pack2 from "../../utils/pack/pack"
 
 const workSkillStore = useWorkSkillStore();
 
@@ -24,6 +25,7 @@ async function createPackChart(data) {
   let svg = d3.select("svg");
   let margin = 20;
   let diameter = +svg.attr("width");
+  const circlePadding = 2;
   let g = svg
       .append("g")
       .attr("transform", "translate(" + diameter / 2 + "," + diameter / 2 + ")");
@@ -37,7 +39,7 @@ async function createPackChart(data) {
   let pack = d3
     .pack()
     .size([diameter - margin, diameter - margin])
-    .padding(2);
+    .padding(circlePadding);
 
   // let root = jsonData;
   let root = data;
@@ -51,9 +53,13 @@ async function createPackChart(data) {
       return b.value - a.value;
     });
 
-  let focus = root,
-    nodes = pack(root).descendants(),
-    view;
+  // let pack2Func = pack2.default().size([diameter - margin, diameter - margin]).padding(circlePadding);
+
+  let focus = root;
+  let nodes = pack(root).descendants();
+  // let packedNodes = pack2Func(root);
+  // let nodes = Array.from(packedNodes);
+  let view;
 
   let circle = g
     .selectAll("circle")
@@ -72,13 +78,12 @@ async function createPackChart(data) {
     })
     .on("click", function (event) {
       let element = event.srcElement.__data__;
-      console.log("element: ", element.data);
       if (focus !== element) {
-        zoom(element, event);
+        if (!!element.data.children && (element.data.children.length > 0)) {
+          zoom(element, event);
+        }
         workSkillStore.skillForCommentEdit = element.data;
         event.stopPropagation();
-      } else {
-        console.log("element: ", element.data);
       }
       // if (focus !== element) zoom(element, event), event.stopPropagation();
     });
