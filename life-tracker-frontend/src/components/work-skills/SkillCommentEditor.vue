@@ -32,7 +32,6 @@ const skillForTextEditor = computed(() => {
 });
 
 watchEffect(() => {
-  console.log("skillForTextEditor.value.comment: ", skillForTextEditor);
   if (!!skillForTextEditor.value && !!skillForTextEditor.value.comment) {
     editorText.value = skillForTextEditor.value.comment;
   } else {

@@ -4,16 +4,19 @@
       <q-card-section class="row" style="margin-bottom: 2rem">
 
         <q-btn style="margin-left: 1rem"
+               color="primary"
                @click="showAddDialog">
           Добавить элемент
         </q-btn>
 
         <q-btn style="margin-left: 1rem"
+               color="primary"
                @click="showChangeDialog">
           Изменить элемент
         </q-btn>
 
         <q-btn style="margin-left: 1rem"
+               color="primary"
                @click="showDeleteDialog">
           Удалить элемент
         </q-btn>

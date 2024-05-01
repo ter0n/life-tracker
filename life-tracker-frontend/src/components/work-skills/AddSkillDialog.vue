@@ -29,11 +29,13 @@
                  v-model="newSkill.comment"
                  type="textarea"
                  label="Комментарий"/>
-        <div class="row justify-around">
-          <q-btn color="primary" @click="submit"> Добавить</q-btn>
-          <q-btn color="red" @click="cancel"> Отменить</q-btn>
-        </div>
+
       </q-card-section>
+
+      <q-card-actions class="row">
+        <q-btn class="col" color="primary" @click="submit"> Добавить </q-btn>
+        <q-btn class="col" color="red" @click="cancel"> Отменить </q-btn>
+      </q-card-actions>
 
     </q-card>
   </q-dialog>
@@ -70,10 +72,12 @@ onMounted(() => {
 
 function submit() {
   workSkillStore.createNewWorkSkill(newSkill.value);
+  initNewSkill();
   workSkillStore.showAddSkillDialog = false;
 }
 
 function cancel() {
+  initNewSkill();
   workSkillStore.showAddSkillDialog = false;
 }
 

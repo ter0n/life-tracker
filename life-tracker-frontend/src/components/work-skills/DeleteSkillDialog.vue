@@ -38,10 +38,12 @@ onMounted(() => {
 
 function submit() {
   workSkillStore.deleteSkill(workSkill.value);
+  workSkill.value = null;
   workSkillStore.showDeleteSkillDialog = false;
 }
 
 function cancel() {
+  workSkill.value = null;
   workSkillStore.showDeleteSkillDialog = false;
 }
 

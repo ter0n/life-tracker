@@ -5,7 +5,6 @@
 <script setup>
 import * as d3 from 'd3'
 import jsonData from 'assets/json/flare.json'
-import {api} from "boot/axios";
 import {computed, onMounted, watchEffect} from "vue";
 import {useWorkSkillStore} from "stores/WorkSkill";
 // import  * as pack2 from "../../utils/pack/pack"
@@ -53,13 +52,16 @@ async function createPackChart(data) {
       return b.value - a.value;
     });
 
+  // использование исходников d3js.pack, скопированных в проект и изменнённых
   // let pack2Func = pack2.default().size([diameter - margin, diameter - margin]).padding(circlePadding);
 
   let focus = root;
   let nodes = pack(root).descendants();
+  let view;
+
+  // для использования локального d3
   // let packedNodes = pack2Func(root);
   // let nodes = Array.from(packedNodes);
-  let view;
 
   let circle = g
     .selectAll("circle")
@@ -75,6 +77,7 @@ async function createPackChart(data) {
     })
     .style("fill", function (d) {
       return d.children ? color(d.depth) : null;
+      // return color(d.depth);
     })
     .on("click", function (event) {
       let element = event.srcElement.__data__;
@@ -107,13 +110,9 @@ async function createPackChart(data) {
 
   let node = g.selectAll("circle,text");
   svg.style("background", color(-1)).on("click", function (event) {
+  // svg.on("click", function (event) {
     zoom(root, event);
   });
-  // svg.on("click", function (event) {
-  //   // let element = event.srcElement.__data__;
-  //   console.log("element: ", event);
-  //   zoom(root, event);
-  // });
 
   zoomTo([root.x, root.y, root.r * 2 + margin]);
 
