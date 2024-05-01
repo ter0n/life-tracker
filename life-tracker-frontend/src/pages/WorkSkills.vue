@@ -27,7 +27,9 @@
       <PackChart/>
       </div>
       <q-card class="q-ma-md col-12 col-md-5">
+        <q-scroll-area style="height: 100%">
         <SkillCommentEditor/>
+        </q-scroll-area>
       </q-card>
     </div>
   </div>
