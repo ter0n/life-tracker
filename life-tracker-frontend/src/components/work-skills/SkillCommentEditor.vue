@@ -1,6 +1,8 @@
 <template>
   <q-editor
     v-model="editorText"
+    min-height="75vh"
+    max-height="75vh"
     :definitions="{
       save: {
         tip: 'Сохранить изменения',
