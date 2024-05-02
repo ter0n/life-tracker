@@ -1,5 +1,6 @@
 <template>
-  <svg width="960" height="960"></svg>
+<!--  <svg width="960" height="960"></svg>-->
+  <svg id="svg-id" width="100%" height="100%"></svg>
 </template>
 
 <script setup>
@@ -23,7 +24,11 @@ async function createPackChart(data) {
 
   let svg = d3.select("svg");
   let margin = 20;
-  let diameter = +svg.attr("width");
+  let svgEl = document.getElementById('svg-id');
+  const elHeight = svgEl.height.baseVal.value;
+  const elWidth = svgEl.width.baseVal.value;
+  // let diameter = +svg.attr("width");
+  let diameter = elWidth > elHeight ? +elHeight : +elWidth;
   const circlePadding = 2;
   let g = svg
       .append("g")

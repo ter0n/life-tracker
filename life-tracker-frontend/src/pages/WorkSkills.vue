@@ -22,11 +22,11 @@
         </q-btn>
       </q-card-section>
     </q-card>
-    <div class="row">
+    <div class="row q-ma-md">
       <div class="col-6">
-      <PackChart/>
+        <PackChart/>
       </div>
-      <q-card class="q-ma-md col-12 col-md-5">
+      <q-card class="col-12 col-md-6">
         <SkillCommentEditor />
       </q-card>
     </div>
