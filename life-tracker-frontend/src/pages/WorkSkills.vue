@@ -23,7 +23,7 @@
       </q-card-section>
     </q-card>
     <div class="row q-ma-md">
-      <div class="col-6">
+      <div class="col-6 col-md-6">
         <PackChart/>
       </div>
       <q-card class="col-12 col-md-6">
