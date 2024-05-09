@@ -124,7 +124,7 @@ function getSkillName() {
 }
 
 function saveComment() {
-  if (!!skillForTextEditor.value && !!skillForTextEditor.value.comment) {
+  if (!!skillForTextEditor.value) {
     skillForTextEditor.value.comment = editorText.value;
     workSkillStore.updateWorkSkill(skillForTextEditor.value);
   }
